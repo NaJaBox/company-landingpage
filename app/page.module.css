@@ -107,6 +107,12 @@
 .logo {
   position: relative;
 }
+
+.heroTxt {
+  width: clamp(50rem, 60rem, 100%);
+  text-wrap: balance;
+}
+
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
