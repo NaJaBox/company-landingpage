@@ -1,0 +1,98 @@
+.main {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgba(71, 89, 108, 1);
+}
+
+.topMsg,
+.bottomMsg {
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.topMsgTxt,
+.bottomMsgTxt {
+  width: 10rem;
+  text-align: center;
+  padding: 0.7rem 1rem;
+  background-color: var(--mainCLR);
+}
+
+.line {
+  height: 1px;
+  width: 42%;
+  /* background-color: var(--mainCLR); */
+}
+
+.cards {
+  width: 100vw;
+  height: 81vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(43, 39, 39, 0.4);
+}
+
+.cardsBorder {
+  width: 55rem;
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  border-left: 1px solid var(--mainCLR);
+  border-top: 1px solid var(--mainCLR);
+}
+
+.card {
+  width: 55rem;
+  height: 10rem;
+  padding-left: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cardTxt {
+  height: 100%;
+  width: 90%;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.cardImg1 {
+  width: 10rem;
+  height: 10rem;
+  background-image: url("../../../public/wallet.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.cardImg2 {
+  width: 10rem;
+  height: 10rem;
+  background-image: url("../../../public/diamond\ 1.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.cardImg3 {
+  width: 10rem;
+  height: 10rem;
+  background-image: url("../../../public/graduate\ 1.png");
+  background-size: cover;
+  background-position: center;
+}
+
+#offer {
+  background-color: red;
+}

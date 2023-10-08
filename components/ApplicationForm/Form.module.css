@@ -1,0 +1,153 @@
+/* Application Form */
+.formContainer {
+  width: 20rem;
+  padding: 1rem;
+  margin: 1rem;
+  margin-left: 3rem;
+  /* margin-top: var(--unit); */
+  background-color: var(--shade);
+
+  .form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+}
+
+.inputArea {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputContainer {
+  position: relative;
+  width: 240px;
+}
+
+.inputContainer input {
+  width: 100%;
+  height: 2.5rem;
+  padding: 10px;
+  background: rgba(217, 217, 217, 0.6);
+  border-radius: 5px;
+  outline: none;
+  color: #fff;
+  font-size: 1.2em;
+  transition: 0.5s;
+}
+
+.inputContainer span {
+  position: absolute;
+  left: 0;
+  padding: 10px;
+  pointer-events: none;
+  font-size: 1em;
+  color: whitesmoke;
+  transition: 0.5s;
+}
+
+.inputContainer input:valid ~ span,
+.inputContainer input:focus ~ span {
+  color: var(--mainCLR);
+  transform: translateX(10px) translateY(-7px);
+  font-size: 0.65em;
+  padding: 1px 3px;
+  background: var(--mainCLR);
+  color: #1d2b3c;
+  border-radius: 3px;
+  letter-spacing: 0.2em;
+}
+
+.inputContainer input:valid,
+.inputContainer input:focus {
+  border: 3px solid var(--mainCLR);
+}
+
+.form h6 {
+  margin: 0.5rem 0;
+  font-size: 0.8rem;
+}
+
+.callMe {
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1.5rem;
+  background-color: var(--mainCLR);
+  color: rgb(31, 28, 28);
+  padding: 0.2em 1em;
+  border-radius: 0.25em;
+  position: relative;
+  isolation: isolate;
+  margin: 0 0 0.5rem;
+}
+
+.callMe::after,
+.submitCV::after,
+.fillForm::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: var(--btnCLR);
+  inset: 0;
+  scale: 0 1;
+  /* transform-origin: right; */
+  transition: scale 450ms;
+}
+
+.callMe:hover::after,
+.callMe:focus-visible::after,
+.submitCV:hover::after,
+.submitCV:focus-visible::after,
+.fillForm:hover::after,
+.fillForm:focus-visible::after {
+  /* transform-origin: left; */
+  scale: 1 1;
+}
+
+.sendCV {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem;
+  background-color: rgba(217, 217, 217, 0.6);
+}
+
+.submitCV {
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  background-color: rgb(221, 214, 214);
+  color: rgb(33, 33, 33);
+  padding: 0.2em 1em;
+  border-radius: 0.25em;
+  position: relative;
+  isolation: isolate;
+}
+
+.fillForm {
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  background-color: var(--mainCLR);
+  color: white;
+  padding: 0.5em 1em;
+  border-radius: 0.25em;
+  position: relative;
+  isolation: isolate;
+}
+
+.formMsg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0.5rem;
+  line-height: 1.5em;
+}

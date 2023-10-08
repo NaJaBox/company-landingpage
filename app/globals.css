@@ -39,9 +39,10 @@
   --card-rgb: 180, 185, 188;
   --card-border-rgb: 131, 134, 135;
 
+  scroll-behavior: smooth;
   --unit: 60px;
   --shade: rgba(0, 0, 0, 0.4);
-  --mainCLR:#ec7404;
+  --mainCLR: #ec7404;
   --btnCLR: green;
 }
 
@@ -110,3 +111,4 @@ a {
     color-scheme: dark;
   }
 }
+

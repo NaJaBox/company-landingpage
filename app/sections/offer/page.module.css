@@ -1,0 +1,77 @@
+.main {
+  min-height: 100vh;
+  background-color: rgba(71, 89, 108, 1);
+}
+
+.offerBox {
+  background-color: rgba(43, 39, 39, 0.4);
+  display: flex;
+  justify-content: center;
+}
+
+.offerTxt {
+  padding: 5rem;
+  width: 55rem;
+  height: inherit;
+  border-right: 1px solid var(--mainCLR);
+  border-top: 1px solid var(--mainCLR);
+}
+
+.offerTxt h2 {
+  padding-bottom: 10px;
+}
+
+.offerTxt ul {
+  padding: 3rem 0;
+}
+
+.offerTxt ul > li {
+  padding: 1rem 0 0.5rem;
+}
+
+.offerTxt span {
+  font-weight: bold;
+  font-style: italic;
+}
+
+.main h3 {
+  text-align: center;
+  padding: 5rem 0 3rem;
+}
+
+.btnBox {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+.callMe {
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1.5rem;
+  background-color: var(--mainCLR);
+  color: rgb(31, 28, 28);
+  padding: 0.2em 1em;
+  border-radius: 0.25em;
+  position: relative;
+  isolation: isolate;
+  margin: 0 0 0.5rem;
+}
+
+.callMe::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: var(--btnCLR);
+  inset: 0;
+  scale: 0 1;
+  /* transform-origin: right; */
+  transition: scale 450ms;
+}
+
+.callMe:hover::after,
+.callMe:focus-visible::after {
+  /* transform-origin: left; */
+  scale: 1 1;
+}

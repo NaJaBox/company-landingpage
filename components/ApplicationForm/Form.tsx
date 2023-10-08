@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import styles from "../app/page.module.css";
+import styles from "./Form.module.css";
 
 const Form = () => {
   const [firstName, setFirstName] = useState("");
@@ -11,6 +11,18 @@ const Form = () => {
     e.preventDefault();
     console.log({ firstName, mobileNumber });
   };
+
+ const handleButtonClick = () => {
+   const fileInput = document.getElementById("fileInput") as HTMLInputElement;
+   fileInput.click();
+ };
+
+ const handleFileInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+   const selectedFiles = event.target.files;
+   if (selectedFiles && selectedFiles.length > 0) {
+     console.log("Selected files:", selectedFiles);
+   }
+ };
 
   return (
     <div className={styles.formContainer}>
@@ -50,7 +62,17 @@ const Form = () => {
         <h6>or you can just</h6>
         <div className={styles.sendCV}>
           <h5>Submit your CV</h5>
-          <button className={styles.submitCV} type="submit">
+          <input
+            type="file"
+            id="fileInput"
+            style={{ display: "none" }}
+            onChange={handleFileInputChange}
+          />
+          <button
+            id="browseButton"
+            className={styles.submitCV}
+            onClick={handleButtonClick}
+          >
             Browse
           </button>
         </div>

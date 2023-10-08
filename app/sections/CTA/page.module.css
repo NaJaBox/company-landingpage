@@ -1,0 +1,118 @@
+.main {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+  background-image: url("../../../public/start.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right;
+}
+
+.main::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--shade);
+}
+
+.leftSide {
+  width: 50vw;
+  padding: 3rem 6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.leftSide h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.rightSide h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.steps {
+  width: 30rem;
+  padding: 1rem;
+  position: relative;
+  display: flex;
+  border-left: 2px solid #ec7404;
+}
+
+.steps::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5rem;
+  height: 2px;
+  background-color: #ec7404;
+}
+
+.steps::after {
+  content: "";
+  position: absolute;
+  background-color: #ec7404;
+  left: 0;
+  bottom: 0;
+  width: 7rem;
+  height: 2px;
+}
+
+.steps span {
+  position: absolute;
+  top: 13px;
+  left: -8px;
+  font-family: Calibri;
+  font-size: 1.5rem;
+  background-color: black;
+}
+
+.rightSide {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 4rem;
+}
+
+.applyBtn {
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1.5rem;
+  background-color: var(--mainCLR);
+  color: rgb(31, 28, 28);
+  padding: 0.2em 1em;
+  margin-bottom: 5rem;
+  border-radius: 0.25em;
+  position: relative;
+  isolation: isolate;
+  margin: 0 0 0.5rem;
+}
+
+.applyBtn::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: var(--btnCLR);
+  inset: 0;
+  scale: 0 1;
+  /* transform-origin: right; */
+  transition: scale 450ms;
+}
+
+.applyBtn:hover::after,
+.applyBtn:focus-visible::after {
+  /* transform-origin: left; */
+  scale: 1 1;
+}
+
+.btnBox {
+    margin-bottom: 10rem;
+}
