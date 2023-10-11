@@ -1,10 +1,12 @@
 "use client";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import styles from "./Form.module.css";
 
 const Form = () => {
   const [firstName, setFirstName] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
+  const router = useRouter();
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     const e = event;
@@ -77,7 +79,11 @@ const Form = () => {
           </button>
         </div>
         <h6>OR</h6>
-        <button className={styles.fillForm} type="submit">
+        <button
+          className={styles.fillForm}
+          type="button"
+          onClick={() => router.push("/pages/OnlineApplication")}
+        >
           Fill out this form
         </button>
         <div className={styles.formMsg}>

@@ -1,0 +1,211 @@
+.main {
+  position: relative;
+  background-image: url("../../public/road.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center 60%;
+}
+
+.main::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--shade);
+}
+
+.onlineForm {
+  display: flex;
+  /* justify-content: center; */
+  /* align-items: center; */
+  min-height: 100vh;
+}
+
+.leftSide,
+.midSide,
+.rightSide {
+  padding: 2rem;
+}
+
+.leftSide {
+  width: 20vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userPhoto {
+  width: 10rem;
+  height: 10rem;
+  background-image: url("../../public/user.png");
+  background-size: contain;
+  background-position: center;
+}
+
+.midSide {
+  width: 60vw;
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+
+  .form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+}
+
+.midSide h2 {
+  padding-bottom: 2rem;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.name {
+  display: flex;
+  gap: 1rem;
+}
+
+.formContainer {
+  width: 20rem;
+  /* padding: 1rem; */
+  /* margin: 1rem; */
+  /* margin-left: 3rem; */
+  /* margin-top: var(--unit); */
+  /* background-color: var(--shade); */
+}
+
+.inputArea {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.inputContainer {
+  position: relative;
+  width: 100%;
+}
+
+.inputContainer input {
+  width: 100%;
+  height: 2.5rem;
+  padding: 10px;
+  /* background: rgba(217, 217, 217, 0.6); */
+  border-radius: 5px;
+  outline: none;
+  color: #fff;
+  font-size: 1.2em;
+  transition: 0.5s;
+}
+
+.inputContainer span {
+  position: absolute;
+  left: 0;
+  padding: 10px;
+  pointer-events: none;
+  font-size: 1em;
+  color: whitesmoke;
+  transition: 0.5s;
+}
+
+.inputContainer input:valid ~ span,
+.inputContainer input:focus ~ span {
+  color: var(--mainCLR);
+  transform: translateX(10px) translateY(-7px);
+  font-size: 0.65em;
+  padding: 1px 3px;
+  background: var(--mainCLR);
+  color: #1d2b3c;
+  border-radius: 3px;
+  letter-spacing: 0.2em;
+}
+
+.inputContainer input:valid,
+.inputContainer input:focus {
+  border: 3px solid var(--mainCLR);
+}
+
+.rightSide {
+  width: 20vw;
+}
+
+/* NAVBAR */
+
+.navbar {
+  width: 100vw;
+  height: var(--unit);
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(28, 29, 41, 0.7);
+  -webkit-box-shadow: 0px 5px 15px 2px #000000;
+  box-shadow: 0px 5px 15px 2px #000000;
+
+  .acmeLogo {
+    width: var(--unit);
+    height: var(--unit);
+    background-color: #ec7404;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .logoTxt {
+      width: 40px;
+      height: 40px;
+      border: 1px solid;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+    }
+  }
+
+  .logoTxt > h4 {
+    font-size: 0.7rem;
+  }
+  .logoTxt > h6 {
+    font-size: 0.5rem;
+  }
+
+  .links {
+    width: 120px;
+    height: var(--unit);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 4vw;
+  }
+
+  .links a {
+    color: rgb(111, 104, 104);
+    position: relative;
+  }
+
+  .links a:hover {
+    color: rgb(173, 167, 167);
+  }
+
+  .links a::after {
+    content: "";
+    position: absolute;
+    background-color: #ec7404;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    transform: scaleX(0);
+    /* transform-origin: right; */
+    transition: transform 250ms ease-in;
+  }
+
+  .links a:hover::after {
+    transform: scaleX(1);
+    /* transform-origin: left; */
+  }
+}
