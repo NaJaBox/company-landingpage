@@ -82,7 +82,7 @@ const Form = () => {
         <button
           className={styles.fillForm}
           type="button"
-          onClick={() => router.push("/pages/OnlineApplication")}
+          onClick={() => router.push("/pages/UserProfileSetup")}
         >
           Fill out this form
         </button>

@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {/* <div className={styles.navbar}>
+        <div className={styles.navbar}>
           <a href="#home">
             <div className={styles.acmeLogo}>
               <div className={styles.logoTxt}>
@@ -30,7 +30,7 @@ export default function RootLayout({
             <a href="/">Home</a>
             <a href="#">Login</a>
           </div>
-        </div> */}
+        </div>
         {children}
       </body>
     </html>

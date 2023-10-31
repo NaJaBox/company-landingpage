@@ -1,6 +1,8 @@
 "use client";
 import styles from "./page.module.css";
 import React, { useState } from "react";
+import defaultPhoto from "../../public/user.png";
+import Image from "next/image";
 
 const OnlineApplication = () => {
   const [firstName, setFirstName] = useState("");
@@ -8,19 +10,70 @@ const OnlineApplication = () => {
   const [mobileNumber, setMobileNumber] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
-  const [birthday, setBirthday] = useState("")
-  const [country, setCountry] = useState("")
-  const [education, setEducation] = useState("")
+  const [birthday, setBirthday] = useState("");
+  // const [birthday, setBirthday] = useState<Date | null>(null);
 
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const [country, setCountry] = useState("");
+  const [education, setEducation] = useState("");
+  const [userPhoto, setUserPhoto] = useState(defaultPhoto);
+
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     const e = event;
     e.preventDefault();
-    console.log({ firstName, mobileNumber });
+    try {
+      console.log("Before fetch");
+      const formData = {
+        firstName,
+        lastName,
+        mobileNumber,
+        email,
+        address,
+        birthday,
+        country,
+        education,
+      };
+      console.log(formData);
+      const response = await fetch("/api/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ formData }),
+      });
+
+      console.log("After fetch");
+
+      if (response.ok) {
+        const responseData = await response.json();
+        console.log(responseData.message);
+      } else {
+        console.error("Error:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error in handleSubmit:", error);
+    }
   };
 
-  const currentDate = new Date();
-  const currentYear = currentDate.getFullYear();
-  const age = {birthday} - currentYear
+  const birthdayDate = new Date(birthday);
+  // const birthYear = birthdayDate.getFullYear();
+  const currentYear = new Date().getFullYear();
+  const age = birthday ? currentYear - new Date(birthday).getFullYear() : "";
+
+  const handleUpload = () => {
+    const fileInput = document.getElementById("fileInput") as HTMLInputElement;
+    fileInput.click();
+  };
+
+  const handleFileInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const selectedFiles = event.target.files;
+    if (selectedFiles && selectedFiles.length > 0) {
+      const selectedFile = selectedFiles[0];
+      console.log("Selected files:", selectedFiles);
+      // setUserPhoto(URL.createObjectURL(selectedFile) as StaticImageData);
+    }
+  };
 
   return (
     <main className={styles.main}>
@@ -40,7 +93,23 @@ const OnlineApplication = () => {
       </div>
       <section className={styles.onlineForm}>
         <div className={styles.leftSide}>
-          <div className={styles.userPhoto}></div>
+          <div className={styles.userPhoto}>
+            <input
+              type="file"
+              id="fileInput"
+              style={{ display: "none" }}
+              onChange={handleFileInputChange}
+            />
+            <Image
+              src={userPhoto}
+              alt="user photo"
+              width={100}
+              height={100}
+              placeholder="blur"
+              className={styles.userPhotoUp}
+              onClick={handleUpload}
+            />
+          </div>
           <div className={styles.userName}>
             {lastName} {firstName}
           </div>
@@ -60,6 +129,7 @@ const OnlineApplication = () => {
                     name="firstName"
                     required={true}
                     value={firstName}
+                    autoComplete="given-name"
                     onChange={(e) => setFirstName(e.target.value)}
                   />
                   <span>First Name</span>
@@ -71,22 +141,24 @@ const OnlineApplication = () => {
                     name="lastName"
                     required={true}
                     value={lastName}
+                    autoComplete="family-name"
                     onChange={(e) => setLastName(e.target.value)}
                   />
                   <span>Last Name</span>
                 </div>
               </div>
 
-              <div className={styles.inputContainer}>
+              <div className={styles.inputBday}>
                 <input
                   type="date"
                   id="birthday"
                   name="birthday"
                   required={true}
                   value={birthday}
+                  autoComplete="off"
                   onChange={(e) => setBirthday(e.target.value)}
                 />
-                <span>Birthday</span>
+                <span className={styles.bDay}>Birthday</span>
               </div>
               <br />
 
@@ -97,6 +169,7 @@ const OnlineApplication = () => {
                   name="mobileNumber"
                   required={true}
                   value={mobileNumber}
+                  autoComplete="off"
                   onChange={(e) => setMobileNumber(e.target.value)}
                 />
                 <span>Mobile</span>
@@ -108,6 +181,7 @@ const OnlineApplication = () => {
                   name="email"
                   required={true}
                   value={email}
+                  autoComplete="off"
                   onChange={(e) => setEmail(e.target.value)}
                 />
                 <span>Email</span>
@@ -119,6 +193,7 @@ const OnlineApplication = () => {
                   name="address"
                   required={true}
                   value={address}
+                  autoComplete="off"
                   onChange={(e) => setAddress(e.target.value)}
                 />
                 <span>City & Zip</span>
@@ -130,6 +205,7 @@ const OnlineApplication = () => {
                   name="country"
                   required={true}
                   value={country}
+                  autoComplete="off"
                   onChange={(e) => setCountry(e.target.value)}
                 />
                 <span>Country</span>
@@ -146,6 +222,7 @@ const OnlineApplication = () => {
                 <span>Education</span>
               </div>
             </div>
+            <button type="submit">Submit</button>
           </form>
         </div>
         <div className={styles.rightSide}></div>

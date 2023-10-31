@@ -36,7 +36,7 @@ export default function Home() {
       <section>
         <div className={styles.groupContainer}>
           <div className={styles.groupBkg} />
-          <div className={styles.candidateGroup}></div>
+          <div className={styles.candidateGroup}/>
         </div>
       </section>
     </main>
