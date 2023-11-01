@@ -3,6 +3,7 @@ import styles from "./page.module.css";
 import React, { useState } from "react";
 import defaultPhoto from "../../public/user.png";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const OnlineApplication = () => {
   const [firstName, setFirstName] = useState("");
@@ -11,17 +12,16 @@ const OnlineApplication = () => {
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
   const [birthday, setBirthday] = useState("");
-  // const [birthday, setBirthday] = useState<Date | null>(null);
-
   const [country, setCountry] = useState("");
   const [education, setEducation] = useState("");
   const [userPhoto, setUserPhoto] = useState(defaultPhoto);
+  const router = useRouter();
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     const e = event;
     e.preventDefault();
+    
     try {
-      console.log("Before fetch");
       const formData = {
         firstName,
         lastName,
@@ -38,14 +38,14 @@ const OnlineApplication = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ formData }),
+        body: JSON.stringify(formData),
       });
-
-      console.log("After fetch");
 
       if (response.ok) {
         const responseData = await response.json();
         console.log(responseData.message);
+        router.push("/pages/UsersDatabase");
+        router.refresh();
       } else {
         console.error("Error:", response.statusText);
       }
@@ -164,7 +164,7 @@ const OnlineApplication = () => {
 
               <div className={styles.inputContainer}>
                 <input
-                  type="tel"
+                  type="number"
                   id="mobileNumber"
                   name="mobileNumber"
                   required={true}
