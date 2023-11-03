@@ -44,6 +44,22 @@
   --shade: rgba(0, 0, 0, 0.4);
   --mainCLR: #ec7404;
   --btnCLR: green;
+
+  --clr-primary-900: hsl(200, 23%, 8%);
+  --clr-primary-800: hsl(206, 23%, 12%);
+  --clr-primary-700: hsl(206, 23%, 18%);
+  --clr-primary-600: hsl(206, 23%, 26%);
+  --clr-primary-500: hsl(206, 23%, 32%);
+  --clr-primary-400: hsl(206, 23%, 45%);
+  --clr-primary-300: hsl(206, 23%, 65%);
+  --clr-primary-200: hsl(206, 23%, 85%);
+  --clr-primary-100: hsl(206, 23%, 92%);
+
+  --clr-accent-600: hsl(183, 40%, 20%);
+  --clr-accent-500: hsl(183, 40%, 32%);
+  --clr-accent-400: hsl(183, 40%, 45%);
+  --clr-accent-300: hsl(183, 40%, 58%);
+  --clr-accent-200: hsl(183, 40%, 80%);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -111,4 +127,3 @@ a {
     color-scheme: dark;
   }
 }
-

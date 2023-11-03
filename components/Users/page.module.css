@@ -1,3 +1,11 @@
+.main {
+  height: 100vh;
+  background-image: url("../../public/road.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center 60%;
+}
+
 /* NAVBAR */
 
 .navbar {
@@ -71,4 +79,57 @@
     transform: scaleX(1);
     /* transform-origin: left; */
   }
+}
+
+/* CARDS */
+
+.content {
+  width: min(100% - 4rem, 85rem);
+  margin-inline: auto;
+}
+.content h2 {
+  margin: 1rem 0;
+}
+
+.layout {
+  display: flex;
+  gap: 2rem;
+}
+
+.users {
+  display: flex;
+  width: 90%;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  background-color: rgba(74, 94, 111, 0.102);
+}
+
+.userContainer {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  flex-wrap: wrap;
+  /* gap: 1rem; */
+}
+
+.user {
+  width: 13rem;
+  background: var(--clr-primary-700);
+  border-radius: 0.5rem;
+  margin: 1rem;
+  padding: .5rem;
+}
+
+
+.rightMenu aside {
+  width: 7vw;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: rgba(74, 94, 111, 0.307);
+}
+
+.selectBtn {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
