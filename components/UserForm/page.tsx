@@ -222,7 +222,7 @@ const OnlineApplication = () => {
                 <span>Education</span>
               </div>
             </div>
-            <button type="submit">Submit</button>
+            <button className={styles.profileSubmitBtn} type="submit">Submit</button>
           </form>
         </div>
         <div className={styles.rightSide}></div>

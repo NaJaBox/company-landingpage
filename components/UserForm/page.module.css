@@ -156,6 +156,35 @@
   width: 20vw;
 }
 
+.profileSubmitBtn {
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  background-color: var(--mainCLR);
+  color: white;
+  padding: 0.5em 1em;
+  border-radius: 0.25em;
+  position: relative;
+  isolation: isolate;
+}
+
+.profileSubmitBtn::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: var(--btnCLR);
+  inset: 0;
+  scale: 0 1;
+  /* transform-origin: right; */
+  transition: scale 450ms;
+}
+
+.profileSubmitBtn:hover::after, 
+.profileSubmitBtn:focus-visible::after {
+  /* transform-origin: left; */
+  scale: 1 1;
+}
+
 /* NAVBAR */
 
 .navbar {

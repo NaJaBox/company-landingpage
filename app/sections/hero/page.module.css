@@ -114,8 +114,9 @@
 .heroTxt,
 .formContainer {
   max-width: 25rem;
-  margin-left: 3rem;
+  margin-left: clamp(1rem, 3rem, 5vw);
   margin-top: 2rem;
+  /* margin: clamp(1rem, 2rem, 10vw); */
 }
 
 .heroTxt h1 {

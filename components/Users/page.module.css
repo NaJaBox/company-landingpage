@@ -117,9 +117,8 @@
   background: var(--clr-primary-700);
   border-radius: 0.5rem;
   margin: 1rem;
-  padding: .5rem;
+  padding: 0.5rem;
 }
-
 
 .rightMenu aside {
   width: 7vw;
