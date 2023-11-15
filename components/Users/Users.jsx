@@ -1,6 +1,8 @@
 "use client";
 import styles from "./page.module.css";
 import React, { useState, useEffect } from "react";
+import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
+
 
 export const Users = () => {
   const [users, setUsers] = useState([]);
@@ -95,7 +97,7 @@ export const Users = () => {
         </a>
         <div className={styles.links}>
           <a href="/">Home</a>
-          <a href="#">Login</a>
+          <LogoutLink>Log out</LogoutLink>
         </div>
       </section>
       <div className={styles.content}>
@@ -108,6 +110,7 @@ export const Users = () => {
               <div className={styles.userContainer}>
                 {users.map((user, index) => (
                   <div key={index} className={styles.user}>
+                    <div>{user.profilePhoto}</div>
                     <div>
                       {user.firstName} {user.lastName} Age:{" "}
                       {calculateAge(user.birthday)}

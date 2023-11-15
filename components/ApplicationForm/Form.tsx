@@ -106,77 +106,78 @@ const Form = () => {
         <button className={styles.callMe} type="submit">
           Call Me
         </button>
-        <div>
-          <h6>or you can just</h6>
-          <button className={styles.submitCVBtn} onClick={openModal}>
-            Submit CV
-          </button>
-          <Modal className={styles.modal} isOpen={isModalOpen}>
-            <form className={styles.modalForm} onSubmit={handleCvSubmit}>
-              <div className={styles.modalInput}>
-                <div className={styles.inputContainer}>
-                  <input
-                    type="text"
-                    id="firstName"
-                    name="firstName"
-                    required={true}
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
-                  />
-                  <span>First Name</span>
-                </div>
-                <div className={styles.inputContainer}>
-                  <input
-                    type="tel"
-                    id="mobileNumber"
-                    name="mobileNumber"
-                    required={true}
-                    value={mobileNumber}
-                    onChange={(e) => setMobileNumber(e.target.value)}
-                  />
-                  <span>Mobile</span>
-                </div>
-                <div className={styles.sendCV}>
-                  <h5>Submit your CV</h5>
-                  <input
-                    type="file"
-                    id="fileInput"
-                    style={{ display: "none" }}
-                    onChange={handleFileInputChange}
-                  />
-                  <button
-                    id="browseButton"
-                    className={styles.submitCV}
-                    onClick={handleButtonClick}
-                  >
-                    Browse
-                  </button>
-                </div>
-                  <div id="selectedFileName" className={styles.fileName}>
-                    {selectedFile ? selectedFile.name : "No file selected"}
-                  </div>
-              </div>
-              <button className={styles.submitCVBtn} type="submit">
-                Submit
-              </button>
-            </form>
-          </Modal>
-        </div>
-        <div>
-          <h6>OR</h6>
-          <button
-            className={styles.fillForm}
-            type="button"
-            onClick={() => router.push("/pages/UserProfileSetup")}
-          >
-            Fill out this form
-          </button>
-        </div>
-        <div className={styles.formMsg}>
-          <h4>Everyone is IMPORTANT to us</h4>
-          <h5>We will contact you as soon is possible</h5>
-        </div>
       </form>
+      <div>
+        <h6>or you can just</h6>
+        <button className={styles.submitCVBtn} onClick={openModal}>
+          Submit CV
+        </button>
+        <Modal className={styles.modal} isOpen={isModalOpen}>
+          <form className={styles.modalForm} onSubmit={handleCvSubmit}>
+            <div className={styles.modalInput}>
+              <div className={styles.inputContainer}>
+                <input
+                  type="text"
+                  id="firstName"
+                  name="firstName"
+                  required={true}
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                />
+                <span>First Name</span>
+              </div>
+              <div className={styles.inputContainer}>
+                <input
+                  type="tel"
+                  id="mobileNumber"
+                  name="mobileNumber"
+                  required={true}
+                  value={mobileNumber}
+                  onChange={(e) => setMobileNumber(e.target.value)}
+                />
+                <span>Mobile</span>
+              </div>
+              <div className={styles.sendCV}>
+                <h5>Submit your CV</h5>
+                <input
+                  type="file"
+                  id="fileInput"
+                  style={{ display: "none" }}
+                  onChange={handleFileInputChange}
+                />
+                <button
+                  id="browseButton"
+                  className={styles.submitCV}
+                  onClick={handleButtonClick}
+                >
+                  Browse
+                </button>
+              </div>
+              <div id="selectedFileName" className={styles.fileName}>
+                {selectedFile ? selectedFile.name : "No file selected"}
+              </div>
+            </div>
+            <button className={styles.submitCVBtn} type="submit">
+              Submit
+            </button>
+          </form>
+        </Modal>
+      </div>
+      <div>
+        <h6>OR</h6>
+        <button
+          className={styles.fillForm}
+          type="button"
+          onClick={() => router.push("/pages/UserProfileSetup")}
+        >
+          Fill out this form
+        </button>
+      </div>
+      <div className={styles.formMsg}>
+        <h4>Everyone is IMPORTANT to us</h4>
+        <h5>We will contact you as soon is possible</h5>
+      </div>
+      {/* </form> */}
     </div>
   );
 };

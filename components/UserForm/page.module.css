@@ -51,18 +51,21 @@
 }
 
 .midSide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 60vw;
   border-left: 1px solid rgba(255, 255, 255, 0.2);
   border-right: 1px solid rgba(255, 255, 255, 0.2);
 
-  .form {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-  }
+}
+.form {
+  position: relative;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  /* align-items: center; */
+  gap: 1rem;
 }
 
 .midSide h2 {
@@ -163,6 +166,7 @@
   background-color: var(--mainCLR);
   color: white;
   padding: 0.5em 1em;
+  margin-top: 2rem;
   border-radius: 0.25em;
   position: relative;
   isolation: isolate;

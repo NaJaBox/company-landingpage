@@ -1,5 +1,9 @@
 import styles from "./page.module.css";
 import Form from "../../../components/ApplicationForm/Form";
+import {
+  RegisterLink,
+  LoginLink,
+} from "@kinde-oss/kinde-auth-nextjs/components";
 
 export default function Home() {
   return (
@@ -19,14 +23,20 @@ export default function Home() {
               <div className={styles.links}>
                 <a href="#benefits">Your Benefits</a>
                 <a href="#offer">Our Offer</a>
-                <a href="/">Login</a>
+                <LoginLink
+                  authUrlParams={{
+                    lang: "en-AU",
+                  }}
+                >
+                  Admin
+                </LoginLink>
               </div>
             </div>
           </nav>
         </header>
         <div className={styles.heroTxt}>
           <h1>
-            <span id="home">Nurturing</span>  Ambitions <br /> Fostering Families
+            <span id="home">Nurturing</span> Ambitions <br /> Fostering Families
           </h1>
           <h2>Begin Your Journey Now</h2>
           <h4>Time To Give More Value To Both</h4>
@@ -36,7 +46,7 @@ export default function Home() {
       <section>
         <div className={styles.groupContainer}>
           <div className={styles.groupBkg} />
-          <div className={styles.candidateGroup}/>
+          <div className={styles.candidateGroup} />
         </div>
       </section>
     </main>

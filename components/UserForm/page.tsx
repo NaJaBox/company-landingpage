@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import defaultPhoto from "../../public/user.png";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import UploadBtn from "../UploadBtn/page"
 
 const OnlineApplication = () => {
   const [firstName, setFirstName] = useState("");
@@ -14,13 +15,16 @@ const OnlineApplication = () => {
   const [birthday, setBirthday] = useState("");
   const [country, setCountry] = useState("");
   const [education, setEducation] = useState("");
-  const [userPhoto, setUserPhoto] = useState(defaultPhoto);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [userPhoto, setUserPhoto] = useState<string>(defaultPhoto.src);
+  // const defaultPhoto: string = defaultPhoto;
+
   const router = useRouter();
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     const e = event;
     e.preventDefault();
-    
+
     try {
       const formData = {
         firstName,
@@ -31,6 +35,7 @@ const OnlineApplication = () => {
         birthday,
         country,
         education,
+        profilePhoto: userPhoto,
       };
       console.log(formData);
       const response = await fetch("/api/users", {
@@ -59,10 +64,10 @@ const OnlineApplication = () => {
   const currentYear = new Date().getFullYear();
   const age = birthday ? currentYear - new Date(birthday).getFullYear() : "";
 
-  const handleUpload = () => {
-    const fileInput = document.getElementById("fileInput") as HTMLInputElement;
-    fileInput.click();
-  };
+  // const handleUpload = () => {
+  //   const fileInput = document.getElementById("fileInput") as HTMLInputElement;
+  //   fileInput.click();
+  // };
 
   const handleFileInputChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -70,10 +75,46 @@ const OnlineApplication = () => {
     const selectedFiles = event.target.files;
     if (selectedFiles && selectedFiles.length > 0) {
       const selectedFile = selectedFiles[0];
+      setUserPhoto(URL.createObjectURL(selectedFile) as string);
+      setSelectedFile(selectedFile);
+      // setUserPhoto(URL.createObjectURL(selectedFile));
       console.log("Selected files:", selectedFiles);
-      // setUserPhoto(URL.createObjectURL(selectedFile) as StaticImageData);
     }
   };
+
+  const handleUpload = async () => {
+  const fileInput = document.getElementById("fileInput") as HTMLInputElement;
+  fileInput.click();
+  if (selectedFile) {
+    try {
+      const formData = new FormData();
+      formData.append("file", selectedFile);
+
+      // Send the file to the server for uploading
+      const response = await fetch("/api/uploads/uploads", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        const responseData = await response.json();
+        console.log(responseData); // Log the response for debugging
+
+        // Update the userPhoto state with the server's response
+        setUserPhoto(responseData.profilePhoto);
+        console.log("File uploaded successfully");
+        // Additional logic after successful file upload, if needed
+      } else {
+        console.error("Failed to upload file");
+        // Handle the error
+      }
+    } catch (error) {
+      console.error("Error uploading file:", error);
+      // Handle the error
+    }
+  }
+  };
+
 
   return (
     <main className={styles.main}>
@@ -92,33 +133,33 @@ const OnlineApplication = () => {
         </div>
       </div>
       <section className={styles.onlineForm}>
-        <div className={styles.leftSide}>
-          <div className={styles.userPhoto}>
-            <input
-              type="file"
-              id="fileInput"
-              style={{ display: "none" }}
-              onChange={handleFileInputChange}
-            />
-            <Image
-              src={userPhoto}
-              alt="user photo"
-              width={100}
-              height={100}
-              placeholder="blur"
-              className={styles.userPhotoUp}
-              onClick={handleUpload}
-            />
+        <form className={styles.form} method="post" onSubmit={onSubmit}>
+          <div className={styles.leftSide}>
+            <div className={styles.userPhoto}>
+              <input
+                type="file"
+                id="fileInput"
+                style={{ display: "none" }}
+                onChange={handleFileInputChange}
+              />
+              <Image
+                src={userPhoto}
+                alt="user photo"
+                width={100}
+                height={100}
+                // placeholder="blur"
+                className={styles.userPhotoUp}
+                onClick={handleUpload}
+              />
+            </div>
+            <div className={styles.userName}>
+              {lastName} {firstName}
+            </div>
+            <div className={styles.userAge}>{age}</div>
+            <div className={styles.userEmail}>{email}</div>
+            <div className={styles.userMobile}>{mobileNumber}</div>
           </div>
-          <div className={styles.userName}>
-            {lastName} {firstName}
-          </div>
-          <div className={styles.userAge}>{age}</div>
-          <div className={styles.userEmail}>{email}</div>
-          <div className={styles.userMobile}>{mobileNumber}</div>
-        </div>
-        <div className={styles.midSide}>
-          <form className={styles.form} method="post" onSubmit={onSubmit}>
+          <div className={styles.midSide}>
             <div className={styles.inputArea}>
               <h2>Profile Setup</h2>
               <div className={styles.name}>
@@ -222,11 +263,16 @@ const OnlineApplication = () => {
                 <span>Education</span>
               </div>
             </div>
-            <button className={styles.profileSubmitBtn} type="submit">Submit</button>
-          </form>
-        </div>
+            <div>
+              <button className={styles.profileSubmitBtn} type="submit">
+                Submit
+              </button>
+            </div>
+          </div>
+        </form>
         <div className={styles.rightSide}></div>
       </section>
+      <UploadBtn/>
     </main>
   );
 };

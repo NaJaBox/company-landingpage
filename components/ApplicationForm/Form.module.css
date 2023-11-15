@@ -4,6 +4,12 @@
   padding: 1rem;
   margin: clamp(1rem, 3rem, 10vw);
   background-color: var(--shade);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
 
   .form {
     position: relative;
@@ -95,7 +101,7 @@
 }
 
 
-.form h6 {
+.formContainer h6 {
   margin: 0.5rem 0 ;
   font-size: 0.8rem;
   text-align: center;

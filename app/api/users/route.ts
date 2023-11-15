@@ -1,7 +1,11 @@
-import  {connectDB}  from "@/lib/database";
+import { connectDB } from "@/lib/database";
 import User from "../../../models/user";
 import { NextResponse } from "next/server";
 import { NextApiRequest, NextApiResponse } from "next";
+import fs from "fs";
+import path from "path";
+
+const uploadDirectory = path.join(process.cwd(), "public/uploads/userPhoto");
 
 export async function POST(req: NextApiRequest) {
   console.log("Request body:", req.body);
@@ -17,7 +21,15 @@ export async function POST(req: NextApiRequest) {
       address: string;
       country: string;
       education: string;
+      profilePhoto: string;
     };
+
+    const { profilePhoto } = req.body;
+    if (profilePhoto) {
+      const filePath = path.join(uploadDirectory, `profile-${body.firstName}.jpg`); // Adjust the file name as needed
+      fs.writeFileSync(filePath, Buffer.from(profilePhoto, "base64"));
+      body.profilePhoto = `/uploads/profile-${body.firstName}.jpg`; // Adjust the URL path as needed
+    }
 
     await User.create(body);
     return NextResponse.json({ message: "User Created" });
