@@ -10,7 +10,7 @@ const userSchema = new Schema(
     address: String,
     country: String,
     education: String,
-    profilePhoto: String,
+    profilePhotoUrl: String,
   },
   { timestamps: true }
 );

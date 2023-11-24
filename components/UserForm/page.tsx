@@ -35,7 +35,7 @@ const OnlineApplication = () => {
         birthday,
         country,
         education,
-        profilePhoto: userPhoto,
+        profilePhotoUrl: userPhoto,
       };
       console.log(formData);
       const response = await fetch("/api/users", {
