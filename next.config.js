@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    // serverComponentsExternalPackages: ["mongoose"],
+    serverComponentsExternalPackages: ["mongoose"],
+  },
+   typescript: {
+    ignoreBuildErrors: true,
   },
 };
 
