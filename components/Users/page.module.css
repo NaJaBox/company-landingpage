@@ -4,6 +4,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center 60%;
+  overflow: hidden;
 }
 
 /* NAVBAR */
@@ -99,12 +100,15 @@
 .users {
   display: flex;
   width: 90%;
+  height: 80vh;
   gap: 1rem;
   margin-bottom: 1rem;
   background-color: rgba(74, 94, 111, 0.102);
+  overflow-y: scroll;
 }
 
 .userContainer {
+  /* height: 100vh; */
   display: flex;
   justify-content: center;
   /* align-items: center; */

@@ -3,7 +3,6 @@ import styles from "./page.module.css";
 import React, { useState, useEffect } from "react";
 import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
 
-
 export const Users = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -125,7 +124,7 @@ export const Users = () => {
           </section>
           <section className={styles.rightMenu}>
             <aside>
-              <h2>Select Users By</h2>
+              <h3>Select Candidates By</h3>
               <div className={styles.selectBtn}>
                 <button className={styles.ageBtn} onClick={handleSortByAge}>
                   Age

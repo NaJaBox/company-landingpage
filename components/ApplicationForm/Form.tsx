@@ -26,15 +26,21 @@ const Form = () => {
   const handleFileInputChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-     const selectedFiles = event.target.files;
-     if (selectedFiles && selectedFiles.length > 0) {
-       setSelectedFile(selectedFiles[0]);
-     }
+    const selectedFiles = event.target.files;
+    if (selectedFiles && selectedFiles.length > 0) {
+      setSelectedFile(selectedFiles[0]);
+    }
   };
 
   const handleCvSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     const e = event;
     e.preventDefault();
+    const validNumber = /^\d+$/.test(mobileNumber);
+    if (!validNumber) {
+      // If mobileNumber is not valid, show an error message or perform other actions
+      alert("Please enter a valid mobile number.");
+      return; // Prevent further execution of form submission logic
+    }
     try {
       const formData = {
         firstName,
@@ -53,8 +59,6 @@ const Form = () => {
         const responseData = await response.json();
         console.log(responseData.message);
         // router.push("/pages/UsersDatabase");
-        router.refresh();
-        closeModal();
       } else {
         console.error("Error:", response.statusText);
       }
@@ -69,6 +73,13 @@ const Form = () => {
 
   const closeModal = () => {
     setIsModalOpen(false);
+  };
+
+  const handleSubmit = () => {
+    router.refresh();
+    setFirstName("");
+    setMobileNumber("");
+    closeModal();
   };
 
   return (
@@ -91,7 +102,8 @@ const Form = () => {
           <h6>and your</h6>
           <div className={styles.inputContainer}>
             <input
-              type="tel"
+              type="text"
+              pattern="[0-9]*"
               id="mobileNumber"
               name="mobileNumber"
               required={true}
@@ -112,6 +124,7 @@ const Form = () => {
         <button className={styles.submitCVBtn} onClick={openModal}>
           Submit CV
         </button>
+
         <Modal className={styles.modal} isOpen={isModalOpen}>
           <form className={styles.modalForm} onSubmit={handleCvSubmit}>
             <div className={styles.modalInput}>
@@ -157,7 +170,11 @@ const Form = () => {
                 {selectedFile ? selectedFile.name : "No file selected"}
               </div>
             </div>
-            <button className={styles.submitCVBtn} type="submit">
+            <button
+              className={styles.submitCVBtn}
+              type="submit"
+              onClick={handleSubmit}
+            >
               Submit
             </button>
           </form>
