@@ -4,7 +4,8 @@ import React, { useState } from "react";
 import defaultPhoto from "../../public/user.png";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import UploadBtn from "../UploadBtn/page"
+import UploadBtn from "../UploadBtn/page";
+import Modal from "../Modal/page";
 
 const OnlineApplication = () => {
   const [firstName, setFirstName] = useState("");
@@ -17,6 +18,7 @@ const OnlineApplication = () => {
   const [education, setEducation] = useState("");
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [userPhoto, setUserPhoto] = useState<string>(defaultPhoto.src);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   // const defaultPhoto: string = defaultPhoto;
 
   const router = useRouter();
@@ -49,8 +51,8 @@ const OnlineApplication = () => {
       if (response.ok) {
         const responseData = await response.json();
         console.log(responseData.message);
-        router.push("/pages/UsersDatabase");
-        router.refresh();
+        // router.push("/pages/UsersDatabase");
+        // router.refresh();
       } else {
         console.error("Error:", response.statusText);
       }
@@ -83,38 +85,46 @@ const OnlineApplication = () => {
   };
 
   const handleUpload = async () => {
-  const fileInput = document.getElementById("fileInput") as HTMLInputElement;
-  fileInput.click();
-  if (selectedFile) {
-    try {
-      const formData = new FormData();
-      formData.append("file", selectedFile);
+    const fileInput = document.getElementById("fileInput") as HTMLInputElement;
+    fileInput.click();
+    if (selectedFile) {
+      try {
+        const formData = new FormData();
+        formData.append("file", selectedFile);
 
-      // Send the file to the server for uploading
-      const response = await fetch("/api/uploads/uploads", {
-        method: "POST",
-        body: formData,
-      });
+        // Send the file to the server for uploading
+        const response = await fetch("/api/uploads/uploads", {
+          method: "POST",
+          body: formData,
+        });
 
-      if (response.ok) {
-        const responseData = await response.json();
-        console.log(responseData); // Log the response for debugging
+        if (response.ok) {
+          const responseData = await response.json();
+          console.log(responseData); // Log the response for debugging
 
-        // Update the userPhoto state with the server's response
-        setUserPhoto(responseData.profilePhoto);
-        console.log("File uploaded successfully");
-        // Additional logic after successful file upload, if needed
-      } else {
-        console.error("Failed to upload file");
+          // Update the userPhoto state with the server's response
+          setUserPhoto(responseData.profilePhoto);
+          console.log("File uploaded successfully");
+          // Additional logic after successful file upload, if needed
+        } else {
+          console.error("Failed to upload file");
+          // Handle the error
+        }
+      } catch (error) {
+        console.error("Error uploading file:", error);
         // Handle the error
       }
-    } catch (error) {
-      console.error("Error uploading file:", error);
-      // Handle the error
     }
-  }
   };
 
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+    //  router.push("#")
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <main className={styles.main}>
@@ -264,15 +274,23 @@ const OnlineApplication = () => {
               </div>
             </div>
             <div>
-              <button className={styles.profileSubmitBtn} type="submit">
+              <button
+                className={styles.profileSubmitBtn}
+                type="submit"
+                onClick={handleOpenModal}
+              >
                 Submit
               </button>
+              <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+                <h2>Thank you for your time {firstName}!</h2>
+                <p>This is the content for Modal</p>
+              </Modal>
             </div>
           </div>
         </form>
         <div className={styles.rightSide}></div>
       </section>
-      <UploadBtn/>
+      <UploadBtn />
     </main>
   );
 };

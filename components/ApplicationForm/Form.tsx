@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./Form.module.css";
 import Modal from "react-modal";
+// import modal from "../Modal/page";
 
 Modal.setAppElement("#main");
 const Form = () => {
@@ -11,6 +12,7 @@ const Form = () => {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  // const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     const e = event;
@@ -82,6 +84,15 @@ const Form = () => {
     closeModal();
   };
 
+   const handleOpenModal = () => {
+     setIsModalOpen(true);
+     //  router.push("#")
+   };
+
+   const handleCloseModal = () => {
+     setIsModalOpen(false);
+   };
+
   return (
     <div className={styles.formContainer} id="main">
       <form className={styles.form} onSubmit={onSubmit}>
@@ -98,7 +109,7 @@ const Form = () => {
             />
             <span>First Name</span>
           </div>
-          {/* <br /> */}
+
           <h6>and your</h6>
           <div className={styles.inputContainer}>
             <input
@@ -114,10 +125,17 @@ const Form = () => {
           </div>
         </div>
 
-        {/* <br /> */}
-        <button className={styles.callMe} type="submit">
+        <button
+          className={styles.callMe}
+          type="submit"
+          onClick={handleOpenModal}
+        >
           Call Me
         </button>
+        {/* <modal isOpen={isModalOpen} onClose={handleCloseModal}>
+          <h2>Thank you for your time {firstName}!</h2>
+          <p>This is the content for Modal</p>
+        </modal> */}
       </form>
       <div>
         <h6>or you can just</h6>
